@@ -1,0 +1,11 @@
+--index https://pypi.python.org/simple/
+
+pandas==0.18.1
+xmltodict==0.10.2
+numpy==1.11.1
+scipy==0.18.0
+sklearn==0.17.1
+nltk==3.2.1
+bs4==4.4.1
+gensim==0.13.1
+psutil==3.3.0

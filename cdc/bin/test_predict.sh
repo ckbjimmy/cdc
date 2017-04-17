@@ -1,0 +1,1 @@
+python ../src/predict.py -d /Users/weng/Desktop/test_txt/ -m /Users/weng/idash/model/model_f=bow_a=LogisticR.pkl
