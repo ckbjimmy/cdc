@@ -1,7 +1,8 @@
 ## Supervised Clinical Document Classification Pipeline
 
-- Written by Wei-Hung Weng, HMS, MGH
-- Nov 9, 2016
+- Written by Wei-Hung Weng (HMS, MGH)
+- Created: Nov 9, 2016
+- Latest update: Apr 17, 2017
 - Please contact the author with errors found.
 - ckbjimmy {AT} gmail {DOT} com
 
@@ -12,7 +13,7 @@
 3. Go to the directory
 4. Run `sh test_model.sh`
 
-If you use this code, please cite the GitHub project (see below for Bibtex):
+If you use this code, please kindly cite the GitHub project (see below for Bibtex):
 
 ```
 @misc{Weng2016,
@@ -26,4 +27,4 @@ If you use this code, please cite the GitHub project (see below for Bibtex):
 }
 ```
 
-The code belongs to Wei-Hung Weng and Laboratory of Computer Science, Massachusetts General Hospital. Currently it is under development and will only be used in AMIA NLP Pre-symposium Hackathon (Nov 12, 2016).
+The code belongs to Wei-Hung Weng and Laboratory of Computer Science, Massachusetts General Hospital.
