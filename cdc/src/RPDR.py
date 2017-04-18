@@ -5,7 +5,7 @@ import pandas as pd
 def RPDR(path, lab, num):
     print "Load RPDR data"
 
-    rpdr_dir = "/Users/weng/_hms_phi/rpdr/data/" # ENTER THE POST-PROCESSED MGH DATA TABLE
+    rpdr_dir = "" # ENTER THE POST-PROCESSED MGH DATA TABLE
     df = pd.read_csv(rpdr_dir + "rpdr.txt", sep='\t')
     df = df[['fname', 'bow', 'snomed', 'umls', 'sg', 'st']] 
     
