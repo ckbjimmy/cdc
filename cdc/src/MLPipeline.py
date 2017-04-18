@@ -310,18 +310,18 @@ def MLPipeline(path, data, label, vec, alg, cwt, feature, rep, k):
                         score_table = pd.concat([score_table, metrics], axis=0)
     
     try:
-        cPickle.dump(v.vocabulary_, open(path + 'model/feature_f=' + best_feature + '_a=' + best_algorithm + '.pkl', 'wb'))
+        cPickle.dump(v.vocabulary_, open(path + 'model/feature-f=' + best_feature + '-a=' + best_algorithm + '.pkl', 'wb'))
     except:
         next  
         
     if alg == 'dnn':
-        with open(path + 'model/model_f=' + best_feature + '_a=' + best_algorithm + '.json', 'wb') as json:
+        with open(path + 'model/model-f=' + best_feature + '-a=' + best_algorithm + '.json', 'wb') as json:
             json.write(best_model.to_json())
     else:
-        cPickle.dump(best_model, open(path + 'model/model_f=' + best_feature + '_a=' + best_algorithm + '.pkl', 'wb'))
+        cPickle.dump(best_model, open(path + 'model/model-f=' + best_feature + '-a=' + best_algorithm + '.pkl', 'wb'))
 
-    cPickle.dump(v, open(path + 'model/vectorizer_f=' + best_feature + '_a=' + best_algorithm + '.pkl', 'wb'))  
-    cPickle.dump(encoder, open(path + 'model/encoder_f=' + best_feature + '_a=' + best_algorithm + '.pkl', 'wb'))  
+    cPickle.dump(v, open(path + 'model/vectorizer-f=' + best_feature + '-a=' + best_algorithm + '.pkl', 'wb'))  
+    cPickle.dump(encoder, open(path + 'model/encoder-f=' + best_feature + '-a=' + best_algorithm + '.pkl', 'wb'))  
     score_table.to_csv(path + 'result/' + vec + '_' + alg + '_'+ cwt + '_' + feature + '_' + str(rep) + '_' + str(k) + '_score.txt', sep='\t')
     #score_table = pd.read_csv(path + 'result/' + vec + '_' + alg + '_'+ cwt + '_' + feature + '_' + str(rep) + '_' + str(k) + '_score.txt', sep='\t')
     pred_table.to_csv(path + 'result/' + vec + '_' + alg + '_'+ cwt + '_' + feature + '_' + str(rep) + '_' + str(k) + '_pred.txt', sep='\t')

@@ -52,7 +52,7 @@ def Converter(workdir, folder, format):
                     concept = doc['CAS']['org.apache.ctakes.typesystem.type.refsem.UmlsConcept']
                     l = []
                     for i in xrange(len(concept)):
-                        if concept[i]['@codingScheme'] == 'SNOMED':
+                        if concept[i]['@codingScheme'] == 'SNOMEDCT':
                             prefix = 'S'
                         elif concept[i]['@codingScheme'] == 'RXNORM':
                             prefix = 'R'

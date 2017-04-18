@@ -64,20 +64,25 @@ def RunCtakes(folder, ctakesDir, erisOne):
         next
     subprocess.check_output(['bash', '-c', 'find . -iname "*.txt" -exec bash -c \'cp "$0" "${0%\.txt}.res"\' {} \;'])
     subprocess.check_output(['bash', '-c', 'find . -iname "*.res" -exec bash -c \'cp "$0" "${0%\.res}.txt"\' {} \;'])
-    subprocess.check_output(['bash', '-c', 'mkdir ctakes'])
+    #subprocess.check_output(['bash', '-c', 'mkdir ctakes'])
+    os.system("mkdir ctakes")
     subprocess.check_output(['bash', '-c', 'cp -r ' + ctakesDir + ' ctakes/'])
     subprocess.check_output(['bash', '-c', 'find . -name "*.res" -exec mv {} ctakes/note_input/ \;'])
     try:
-        subprocess.check_output(['bash', '-c', 'rm -rf ctakes/note_input/.DS_Store'])
-        subprocess.check_output(['bash', '-c', 'rm -rf ctakes/note_input/id.res'])
+        #subprocess.check_output(['bash', '-c', 'rm -rf ctakes/note_input/.DS_Store'])
+        #subprocess.check_output(['bash', '-c', 'rm -rf ctakes/note_input/id.res'])
+        os.system("rm -rf ctakes/note_input/.DS_Store")
+        os.system("rm -rf ctakes/note_input/id.res")
     except:
         next
-    subprocess.check_output(['bash', '-c', 'mkdir deid'])
+    #subprocess.check_output(['bash', '-c', 'mkdir deid'])
+    os.system("mkdir deid")
     subprocess.check_output(['bash', '-c', 'find . -name "*.text" -exec mv {} deid/ \;'])
     subprocess.check_output(['bash', '-c', 'find . -name "*.info" -exec mv {} deid/ \;'])
     subprocess.check_output(['bash', '-c', 'find . -name "*.phi" -exec mv {} deid/ \;'])
-    subprocess.check_output(['bash', '-c', 'mkdir xml'])
-    
+    #subprocess.check_output(['bash', '-c', 'mkdir xml'])
+    os.system("mkdir xml")
+
     os.chdir(folder + "/ctakes/bin/")
     cmd = "sh pipeline.sh"
     if erisOne == "eris":
@@ -93,6 +98,7 @@ def RunCtakes(folder, ctakesDir, erisOne):
         os.chdir(folder + "/ctakes/note_input/")    
         subprocess.check_output(['bash', '-c', 'find . -name "*.res" -exec mv {} ' + folder + '/deid/ \;'])
         os.chdir(folder + "/ctakes/note_output/")
+        print os.getcwd()
         subprocess.check_output(['bash', '-c', 'find . -name "*.xml" -exec mv {} ' + folder + '/xml/ \;'])
         os.chdir(folder)
         subprocess.check_output(['bash', '-c', "rm -rf ctakes/"])    

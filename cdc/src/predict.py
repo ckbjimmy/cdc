@@ -69,9 +69,10 @@ def main(argv):
     print 'Concept parser directory :', parserdir
     print 'Location of model        :', model_file
     
-    feature_file = model_file.replace("/model_", "/feature_")
-    encoder_file = model_file.replace("/model_", "/encoder_")
-    feat = re.sub(r"(.*model_f=)(.*)(_a=.*)", r"\2", model_file)
+    feature_file = model_file.replace("/model-", "/feature-")
+    encoder_file = model_file.replace("/model-", "/encoder-")
+    vec_file = model_file.replace("/model-", "/vectorizer-")
+    feat = re.sub(r"(.*model-f=)(.*)(-a=.*)", r"\2", model_file)
     
     cwd = os.getcwd()
     os.system("mkdir cdc_tmp; mkdir cdc_tmp/data")

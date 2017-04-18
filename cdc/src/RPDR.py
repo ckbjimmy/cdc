@@ -1,9 +1,11 @@
+# For 24 medical subdomains, 91237 documents
+
 import pandas as pd
 
 def RPDR(path, lab, num):
     print "Load RPDR data"
-    rpdr_dir = "/Users/weng/_hms_phi/rpdr/data/"
-    #rpdr_dir = "/PHShome/ww957/cdc_exp_rpdr/data/"
+
+    rpdr_dir = "/Users/weng/_hms_phi/rpdr/data/" # ENTER THE POST-PROCESSED MGH DATA TABLE
     df = pd.read_csv(rpdr_dir + "rpdr.txt", sep='\t')
     df = df[['fname', 'bow', 'snomed', 'umls', 'sg', 'st']] 
     
@@ -11,10 +13,6 @@ def RPDR(path, lab, num):
     main = pd.read_csv(rpdr_dir + "_rpdr_subset.txt", sep='\t', header=None)
     main.columns = ['fname', 'empi', 'date', 'author', 'before2012', 'noContent', 'authorLast', \
         'authorFirst', 'spId', 'spDesc', 'sex', 'age', 'sp', 'unk', 'refer', 'label']
-        
-    #for csail server
-    #main = pd.read_csv('rpdr_label.txt', sep=',')
-    #main.columns = ['X', 'sp', 'spDesc']
 
     print "RPDR label: " + lab, str(num)
     if lab == "sp":

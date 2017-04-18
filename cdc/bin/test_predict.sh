@@ -1,1 +1,1 @@
-python ../src/predict.py -d /Users/weng/Desktop/test_txt/ -m /Users/weng/idash/model/model_f=bow_a=LogisticR.pkl
+python ../src/predict.py -d ~/sample/test_txt/ -m ~/sample/model/model-f=sg-a=Calibrate.pkl -p ctakes -q ~/CTAKES_HOME/
