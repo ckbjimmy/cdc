@@ -22,7 +22,7 @@ If you use this code, please kindly cite the GitHub project (see below for Bibte
 	year         = {2016},
 	publisher    = {GitHub},
 	journal      = {GitHub repository},
-	howpublished = {\url{https://github.com/ckbjimmyhms/cdc}},
+	howpublished = {\url{https://github.com/ckbjimmy/cdc}},
 	commit       = {PASTE THE COMMIT VERSION YOU'RE USING HERE}
 }
 ```
