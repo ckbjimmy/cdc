@@ -1,29 +1,35 @@
-## Supervised Clinical Document Classification Pipeline
+## Clinical Document Classification Pipeline
 
 - Written by Wei-Hung Weng (HMS, MGH)
 - Created: Nov 9, 2016
-- Latest update: Apr 17, 2017
+- Latest update: Nov 27, 2017
 - Please contact the author with errors found.
-- ckbjimmy {AT} gmail {DOT} com
+- ckbjimmy {AT} mit {DOT} edu
 
 ### Quick Start
-
 1. `git clone` the repository
 2. `python setup.py install`
 3. Go to the directory
 4. Run `sh test_model.sh`
 
-If you use this code, please kindly cite the GitHub project (see below for Bibtex):
+### Word embedding-CRNN
+1. Download fasttext embedding from [fasttext website](https://fasttext.cc/docs/en/english-vectors.html)
+2. use `python EmbCRNN.py [text_path] [label_path] [embedding_path]`
+
+## Paragraph vector
+1. use `python Doc2vec.py [text_path] [label_path]`
+
+If you use this code, please kindly cite the paper for this GitHub project (see below for BibTex):
 
 ```
-@misc{Weng2016,
-	author       = {Weng, Wei-Hung},
-	title        = {Supervised Clinical Document Classification Pipeline},
-	year         = {2016},
-	publisher    = {GitHub},
-	journal      = {GitHub repository},
-	howpublished = {\url{https://github.com/ckbjimmy/cdc}},
-	commit       = {PASTE THE COMMIT VERSION YOU'RE USING HERE}
+@article{weng2017medical,
+	title        = {Medical Subdomain Classification of Clinical Notes Using a Machine Learning-Based Natural Language Processing Approach.},
+	author       = {Weng, Wei-Hung and Wagholikar, Kavishwar B. and McCray, Alexa T. and Szolovits, Peter and Chueh, Henry C.},
+	journal      = {BMC Medical Informatics and Decision Making.},
+	year         = {2017},
+	volume       = {},
+	number       = {},
+	pages        = {}
 }
 ```
 
