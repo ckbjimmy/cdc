@@ -262,7 +262,7 @@ def main():
     model.fit(text_data_train, target_train, 
             validation_data=(text_data_test, target_test), 
             epochs=100, 
-            batch_size=256,
+            batch_size=64,
             shuffle=True,
             callbacks=[early_stopping])
     
