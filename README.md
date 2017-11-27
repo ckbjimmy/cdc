@@ -16,18 +16,18 @@
 1. Download fasttext embedding from [fasttext website](https://fasttext.cc/docs/en/english-vectors.html)
 2. use `python EmbCRNN.py [text_path] [label_path] [embedding_path]`
 
-## Paragraph vector
+### Paragraph vector
 1. use `python Doc2vec.py [text_path] [label_path]`
 
 If you use this code, please kindly cite the paper for this GitHub project (see below for BibTex):
 
 ```
 @article{weng2017medical,
-    title        = {Medical Subdomain Classification of Clinical Notes Using a Machine Learning-Based Natural Language Processing Approach.},
-    author       = {Weng, Wei-Hung and Wagholikar, Kavishwar B. and McCray, Alexa T. and Szolovits, Peter and Chueh, Henry C.},
-    journal      = {BMC Medical Informatics and Decision Making.},
-    year         = {2017},
-    note         = {\mbox{doi}:\url{10.1186/s12911-017-0556-8}}
+    title   = {Medical Subdomain Classification of Clinical Notes Using a Machine Learning-Based Natural Language Processing Approach.},
+    author  = {Weng, Wei-Hung and Wagholikar, Kavishwar B. and McCray, Alexa T. and Szolovits, Peter and Chueh, Henry C.},
+    journal = {BMC Medical Informatics and Decision Making.},
+    year    = {2017},
+    note    = {\mbox{doi}:\url{10.1186/s12911-017-0556-8}}
 }
 ```
 
