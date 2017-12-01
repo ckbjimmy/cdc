@@ -24,7 +24,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Title   : Clinical Document Classification Pipeline: Embedding + convolutional-recurrent NN
+Title   : Clinical Document Classification Pipeline: Embedding + GRU + attention
 Author  : Wei-Hung Weng
 Created : 08/15/2017
 Usage:  : python EmbCRNN.py [text_path] [label_path] [embedding_path]
@@ -238,22 +238,11 @@ def main():
     sequence_input = Input(shape=(max_words, ), dtype='int32')
     embedded_sequences = embedding_layer(sequence_input)
     
-    m = Conv1D(filters=32, kernel_size=3, padding='same', activation='relu')(embedded_sequences)
-    m = MaxPooling1D(pool_size=2)(m)
-    m = BatchNormalization()(m)
-    m = LeakyReLU(0.1)(m)
-    m = Dropout(0.5)(m)
-    m = Conv1D(filters=64, kernel_size=3, padding='same', activation='relu')(m)
-    m = MaxPooling1D(pool_size=2)(m)
-    m = BatchNormalization()(m)
-    m = LeakyReLU(0.1)(m)
-    m = Dropout(0.5)(m)
-    m = Conv1D(filters=128, kernel_size=3, padding='same', activation='relu')(m)
-    m = MaxPooling1D(pool_size=2)(m)
-    m = BatchNormalization()(m)
-    m = LeakyReLU(0.1)(m)
-    m = Dropout(0.5)(m)
-    m = Bidirectional(GRU(128))(m)
+    if attention == False:
+        m = Bidirectional(GRU(128))(embedded_sequences)
+    else:
+        m = Bidirectional(GRU(128, return_sequences=True, consume_less='mem'))(embedded_sequences)
+        m = Attention()(m)
     pred = Dense(len(encoder.classes_), activation='softmax')(m)
     model = Model(sequence_input, pred)
     model.compile(loss=losses.categorical_crossentropy, optimizer=optimizers.Adam(), 
@@ -289,10 +278,29 @@ def main():
     model.save_weights('model_weights.h5', overwrite=True)
     cPickle.dump(encoder, open('model_encoder.pkl', 'wb'))  
     
+    
+    # attention
+    from keras.preprocessing.sequence import pad_sequences
+    get_layer_output = K.function([model.layers[0].input, K.learning_phase()], [model.layers[2].output])
+    att_w = model.layers[1].get_weights()[0]
+    test_seq = pad_sequences([text_data_test[0]], maxlen=max_words)
+    out = get_layer_output([test_seq, 0])[0]  # test mode
+    print(out[0].shape)
+    eij = np.tanh(np.dot(transpose(out[0]), att_w[0]))
+    ai = np.exp(eij)
+    weights = ai/np.sum(ai)
+    K = 20
+    topKeys = np.argpartition(weights, -K)[-K:]
+    print topKeys
+    topK = test_seq[0][topKeys]
+    print topK
+    [word_dictionary_rev[i] for i in topK]
+    
+
     # representation
     print ''
     print "--- Representation performance ---"
-    hidden_layer = 17
+    hidden_layer = 4
     X = get_activations(model, hidden_layer, np.concatenate([text_data_train, text_data_test]))[0]
     y = [l[0] for l in label]
     
